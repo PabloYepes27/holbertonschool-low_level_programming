@@ -3,7 +3,7 @@
 /**
  * print_alphabet_x10 - prints 10 times the alphabet, in lowercase
  *
- */
+*/
 
 void print_alphabet_x10(void)
 {
@@ -14,9 +14,7 @@ void print_alphabet_x10(void)
 		for (a = 'a'; a <= 'z'; a++)
 		{
 			_putchar(a);
-			
 		}
 		_putchar('\n');
-		
 	}
 }
