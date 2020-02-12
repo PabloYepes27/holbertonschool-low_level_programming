@@ -17,6 +17,6 @@ int main(void)
 			i = x + i;
 		}
 	}
-	printf("%.f \n", i);
+	printf("%.f\n", i);
 	return (0);
 }

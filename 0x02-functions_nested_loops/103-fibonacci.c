@@ -17,7 +17,6 @@ int main(void)
 		y = z;
 		s = z + s;
 	}
-	printf("%.f ", s);
-	printf("\n");
+	printf("%.f\n", s);
 	return (0);
 }

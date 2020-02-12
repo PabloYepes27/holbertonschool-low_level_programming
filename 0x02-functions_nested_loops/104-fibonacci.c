@@ -14,10 +14,20 @@ int main(void)
 
 	for (i = 1; i <= num; i++)
 	{
-		z = x + y;
-		x = y;
-		y = z;
-		printf("%.f, ", z);
+		if (i != num)
+		{
+			z = x + y;
+			x = y;
+			y = z;
+			printf("%.f, ", z);
+		}
+		else
+		{
+			z = x + y;
+			x = y;
+			y = z;
+			printf("%.f", z);
+		}
 	}
 	printf("\n");
 	return (0);
