@@ -8,9 +8,10 @@
 
 char *rot13(char *s)
 {
-	int x, y, z = 0;
+	int x, y;
 
-	char a[] = "ABCDEFGHIJKLM", b[] = "NOPQRSTUVWXYZ";
+	char a[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char b[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
 
 	for (x = 0; s[x]; x++)
 	{
@@ -18,8 +19,8 @@ char *rot13(char *s)
 		{
 			if (s[x] == a[y])
 			{
-				z = y;
-				s[x] = b[z];
+				s[x] = b[y];
+				break;
 			}
 		}
 	}
