@@ -10,16 +10,15 @@
 
 void print_diagsums(int *a, int size)
 {
-	int i;
+	int i = 0, j = 1;
 	unsigned int y = 0, z = 0;
 
-	for (i = 0; i < (size * size); i++)
-	{
+	do {
 		y += a[(size + 1) * i];
-		if(i != 0)
-		{
-			z += a[(size - 1) * i];
-		}
-	}
-	printf("%u, %u'\n'",y, z);
+		z += a[(size - 1) * j];
+		i++;
+		j++;
+	} while (i < size);
+
+	printf("%u, %u \n", y, z);
 }
