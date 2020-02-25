@@ -10,14 +10,14 @@
 
 void print_diagsums(int *a, int size)
 {
-	int i = 0, j = 1;
+	int i = 0, j = (size - 1);
 	unsigned int y = 0, z = 0;
 
-	for (i = 0; i < size; ++i)
+	for (i = 0; i < (size * size); i += size + 1)
 	{
-		y += a[(size + 1) * i];
-		z += a[(size - 1) * j];
-		j++;
-	} 
+		y += a[i];
+		z += a[j];
+		j += size - 1;
+	}
 	printf("%u, %u \n", y, z);
 }
