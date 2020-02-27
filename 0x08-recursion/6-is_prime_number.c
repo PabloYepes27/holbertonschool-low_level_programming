@@ -20,7 +20,7 @@ int is_prime_number(int n)
   * prime - Function that calclate if a number is prime
   * @m: number
   * @i: root
-  * Return: 
+  * Return: 1 or 0
   **/
 
 int prime(int m, int i)
