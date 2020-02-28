@@ -33,18 +33,21 @@ int is_palindrome(char *s)
 
 int compare(char *q, int y, int len)
 {
-	if (q[y] < q[len])
+	if (y < len)
 	{
 		if (q[y] == q[len])
 		{
-			compare(q, (y + 1), (len - 1));
+			return (compare(q, (y + 1), (len - 1)));
 		}
 		else
 		{
 			return (0);
 		}
 	}
-	return (1);
+	else
+	{
+		return (1);
+	}
 }
 
 /**
@@ -60,7 +63,8 @@ int length(char *s)
 	{
 		return (1 + length(s + 1));
 	}
-	return (0);
+	else
+		return (0);
 }
 
 
