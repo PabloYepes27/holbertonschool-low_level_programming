@@ -25,17 +25,17 @@ int is_prime_number(int n)
 
 int prime(int m, int i)
 {
-	if (m <= 0)
+	if (m % i == 0 || m < 2)
 	{
 		return (0);
 	}
-	if ((m % i) == 0 && (i < m))
-	{
-		return (0);
-		return (prime(m, ++i));
-	}
-	else
+	if (m - 1 == i)
 	{
 		return (1);
 	}
+	else if (m > i)
+	{
+		return (prime(m, ++i));
+	}
+	return (1);
 }
