@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 	}
 	for (x = 1; x < argc; x++)
 	{
-		if (isdigit(argv[x]))
+		if (isdigit(*argv[x]))
 		{
 			sum += atoi(argv[x]);
 		}
