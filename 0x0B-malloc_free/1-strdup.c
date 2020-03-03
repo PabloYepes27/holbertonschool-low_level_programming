@@ -27,9 +27,11 @@ char *_strdup(char *str)
 			a[j] = str[j];
 		}
 		a[j] = '\0';
-		return (a);
-		free(a);
 	}
 	else
-	return (NULL);
+	{
+		return (NULL);
+	}
+	return (a);
+	free(a);
 }
