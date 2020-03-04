@@ -3,9 +3,8 @@
 
 /**
   * free_grid - function that frees a 2 dimensional grid previously created
-  * @width: .
+  * @height: .
   * @grid: .
-  * Return: Pointer or NULL
   **/
 
 void free_grid(int **grid, int height)
