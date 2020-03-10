@@ -23,7 +23,7 @@ int _strlen(char *s)
   * @name: name of the dog
   * @age: age of the dog
   * @owner: dog's owner
-  * Return: function "new_dog" that is going to return a pointer variable of dog_t type 
+  * Return: pointer  variable of dog_t type
   **/
 
 dog_t *new_dog(char *name, float age, char *owner)
@@ -35,7 +35,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 	if (newdog == NULL)
 		return (NULL);
 	newdog->age = age; /* passing the value */
-	newdog->name = malloc(_strlen(name) + 1); /* size of the name member that is an string */
+	newdog->name = malloc(_strlen(name) + 1); /* size of the name member  */
 	if (newdog->name == NULL)
 	{
 		free(newdog); /* free memory of the new dog */
