@@ -7,15 +7,18 @@
   * @array: array
   * @size: size of the array
   * @cmp: pointer to the function to be used to compare values
+  * Return: the index of the first elemnt for which the cmp return 0
  **/
 
 int int_index(int *array, int size, int (*cmp)(int))
 {
-	size_t i;
+	int i;
 
-	if (array || cmp || size)
+	if (array && cmp && size > 0)
 	{
 		for (i = 0; i < size; i++)
-		(*action)(array[i]);
+			if ((cmp)(array[i]) == 1)
+				return (i);
 	}
+	return (-1);
 }
