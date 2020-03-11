@@ -29,8 +29,6 @@ char *_strdup(char *str)
 		a[j] = '\0';
 	}
 	else
-	{
 		return (NULL);
-	}
 	return (a);
 }
