@@ -14,6 +14,10 @@ void print_all(const char * const format, ...)
 	va_list lst; /* creating the list */
 
 	va_start(lst, format);
+	while (format == NULL)
+	{	printf("\n");
+		return;
+	}
 	while (format[l])
 	{
 		switch (format[l])
