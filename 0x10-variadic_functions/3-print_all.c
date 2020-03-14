@@ -5,12 +5,10 @@
   * @format: is a list of types of arguments passed to the function
   * Return: Void
   **/
-
 void print_all(const char * const format, ...)
 {
-	char c, *s;
-	int i, l = 0;
-	float f;
+	char *s;
+	int l = 0;
 	va_list lst; /* creating the list */
 
 	va_start(lst, format);
@@ -23,21 +21,20 @@ void print_all(const char * const format, ...)
 		switch (format[l])
 		{
 			case 'c':
-				c = (char) va_arg(lst, int);
-				printf("%c", c);
+				printf("%c", va_arg(lst, int));
 				break;
 			case 'i':
-				i = va_arg(lst, int);
-				printf("%i", i);
+				printf("%i", va_arg(lst, int));
 				break;
 			case 'f':
-				f = (float) va_arg(lst, double);
-				printf("%f", f);
+				printf("%f", va_arg(lst, double));
 				break;
 			case 's':
 				s = va_arg(lst, char*);
 				if (s == NULL)
-					printf("(nil)");
+				{	printf("(nil)");
+					break;
+				}
 				printf("%s", s);
 				break;
 		}
