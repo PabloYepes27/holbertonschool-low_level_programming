@@ -10,21 +10,45 @@
 
 void print_all(const char * const format, ...)
 {
-	unsigned int i;
+	char c, *s, *separator = "";
+	int i, l = 0;
+	float f;
 	va_list lst; /* creating the list */
 
-	if (separator != NULL)
+	va_start(lst, format);
+	while (format[l])
 	{
-		/* initialize the list to store all values after n */
-		va_start(lst, n);
-		for (i = 0; i < n; i++)
+		if (format[l] == 'c' || format[l] == 'i' ||
+		format[l] == 'f' || format[l] == 's')
 		{
-			if (i != (n - 1))
-			printf("%s%s", va_arg(lst, char*), separator);
-			else
-			printf("%s", va_arg(lst, char*));
+			printf("%s", separator);
+			switch (format[l])
+			{
+				case 'c':
+					c = (char) va_arg(lst, int);
+					printf("%c", c);
+					break;
+				case 'i':
+					i = va_arg(lst, int);
+					printf("%i", i);
+					break;
+				case 'f':
+					f = (float) va_arg(lst, double);
+					printf("%f", f);
+					break;
+				case 's': 
+					s = va_arg(lst, char*);
+					if (s == NULL)
+						printf("(nil)");
+					printf("%s", s);
+					break;
+				default:
+					break;
+			}
+			separator = ", ";
 		}
-		va_end(lst); /* cleaning up the list */
-		printf("\n");
+		l++;
 	}
+	va_end(lst); /* cleaning up the list */
+	printf("\n");
 }
