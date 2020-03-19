@@ -18,7 +18,7 @@ int _strlen(const char *s)
 
 /**
  * add_node - function that adds a new node at the beginning of a list_t list
- * @head: node
+ * @head: pointer that point to the header node
  * @str: first node
  * Return: The adress of the new.
  */
@@ -29,7 +29,7 @@ list_t *add_node(list_t **head, const char *str)
 
 	new = *head;
 	new = malloc(sizeof(list_t));
-	if (head == NULL)
+	if (new == NULL)
 		return (NULL);
 	new->str = strdup(str);
 	new->next = *head;
