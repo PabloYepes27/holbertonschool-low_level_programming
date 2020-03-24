@@ -10,12 +10,28 @@
 
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
-	listint_t *new; /* create the new node to iterate */
-	unsigned int i;
+	listint_t *new, *aux; /* create the new node to iterate */
+	unsigned int i, j = 0;
 
-	new = malloc(sizeof(listint_t));
+	if (head == NULL)
+		return (NULL);
+	aux = *head;
+	while (aux)
+	{
+		aux = aux->next;
+		j++;
+	}
+	if (idx > j)
+		return (NULL);
+	new = malloc(sizeof(listint_t)); /* allocate memory */
 	if (new == NULL)
 		return (NULL);
+	if (idx == 0)
+	{
+		new = *head;
+		new->n = n;
+		return (new);
+	}
 	new = *head; /* equal the aux to what the head is pointing to */
 	for (i = 0; i < idx; i++) /* iterate until we reached the index */
 	{
