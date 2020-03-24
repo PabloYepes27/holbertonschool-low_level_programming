@@ -10,7 +10,7 @@
 
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
-	listint_t *new, *aux2, *aux1; /* create the new node to iterate, aux1 for right and aux2 for left */
+	listint_t *new, *aux2, *aux1; /* new node, aux1  next and aux2  last */
 	unsigned int i = 0, j = 0;
 
 	if (head == NULL)
