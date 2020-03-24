@@ -10,21 +10,22 @@
 
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
-	listint_t *new, *aux; /* create the new node to iterate */
-	unsigned int i, j = 0;
+	listint_t *new, *aux2, *aux1; /* create the new node to iterate, aux1 for right and aux2 for left */
+	unsigned int i = 0, j = 0;
 
 	if (head == NULL)
 		return (NULL);
-	aux = *head;
-	while (aux)
+	new = malloc(sizeof(listint_t)); /* allocate memory */
+	if (new == NULL)
+		return (NULL);
+	new->n = n; 
+	aux1 = *head;
+	while (aux1)
 	{
-		aux = aux->next;
+		aux1 = aux1->next;
 		j++;
 	}
 	if (idx > j)
-		return (NULL);
-	new = malloc(sizeof(listint_t)); /* allocate memory */
-	if (new == NULL)
 		return (NULL);
 	if (idx == 0)
 	{
@@ -32,11 +33,18 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 		*head = new;
 		return (new);
 	}
-	new = *head; /* equal the aux to what the head is pointing to */
-	for (i = 0; i < idx && new->next; i++) /* iterate until we reached the index */
+	aux1 = *head;
+	while (aux1)
 	{
-		new = new->next; /* while we iterate we move to the next node */
+		aux2 = aux1;
+		aux1 = aux2->next;
+		i++;
+		if (i == idx)
+		{
+			new->next = aux1;
+			aux2->next = new;
+			return (new);
+		}
 	}
-	new->n = n; /* when we find the given position then add the value */
 	return (new);
 }
