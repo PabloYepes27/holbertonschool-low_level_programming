@@ -28,15 +28,13 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 		return (NULL);
 	if (idx == 0)
 	{
-		new = *head;
-		new->n = n;
+		new->next = *head;
+		*head = new;
 		return (new);
 	}
 	new = *head; /* equal the aux to what the head is pointing to */
-	for (i = 0; i < idx; i++) /* iterate until we reached the index */
+	for (i = 0; i < idx && new->next; i++) /* iterate until we reached the index */
 	{
-		if (new->next == NULL)
-			return (NULL);
 		new = new->next; /* while we iterate we move to the next node */
 	}
 	new->n = n; /* when we find the given position then add the value */
