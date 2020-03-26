@@ -20,7 +20,7 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 		return (NULL);
 	new->n = n; /* assign the value */
 	aux1 = *head; /* aux1 point what is pointing head */
-	while (aux1) 
+	while (aux1)
 	{
 		aux1 = aux1->next;
 		j++;
