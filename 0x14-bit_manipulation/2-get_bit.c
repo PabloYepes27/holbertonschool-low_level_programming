@@ -9,33 +9,14 @@
 
 int get_bit(unsigned long int n, unsigned int index)
 {
-	int i, bin[((sizeof(unsigned long int) * 8) - 1)];
-	unsigned long int k, count = 0;
+	unsigned long int max = 0x01;
 
-	if (n == 0)
-		return (0);
+	max <<= index;
+	if (index > sizeof(unsigned long int) * 8)
+		return (-1);
 
+	if ((n & max))
+		return (1);
 	else
-	{
-		for (i = ((sizeof(unsigned long int) * 8) - 1); i >= 0; i--)
-		{
-			k = n >> i;
-			if (k)
-			{
-				if (k & 1)
-				{
-					bin[i] = 1;
-					count++;
-				}
-				else
-				{
-					bin[i] = 0;
-					count++;
-				}
-			}
-		}
-	}
-	if (index < count)
-		return (bin[index]);
-	return (-1);
+		return (0);
 }
