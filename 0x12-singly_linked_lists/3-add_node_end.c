@@ -17,26 +17,26 @@ int _strlen(const char *s)
 }
 
 /**
- * add_node_end - function that adds a new node at the end of a list_t list
+ * add_node_end - function that adds a end node at the end of a list_t list
  * @head: pointer that point to the header node
  * @str: string
- * Return: The adress of the new.
+ * Return: The adress of the end.
  */
 
 list_t *add_node_end(list_t **head, const char *str)
 {
-	list_t *new, *q;
+	list_t *end, *q;
 
-	new = malloc(sizeof(list_t));
-	if (new == NULL)
+	end = malloc(sizeof(list_t));
+	if (end == NULL)
 		return (NULL);
-	new->str = strdup(str);
-	new->len = _strlen(str);
-	new->next = NULL;
+	end->str = strdup(str);
+	end->len = _strlen(str);
+	end->next = NULL;
 	if (*head == NULL)
 	{
-		new->next = *head;
-		*head = new;
+		*head = end;
+		return (*head);
 	}
 	else
 	{
@@ -45,7 +45,7 @@ list_t *add_node_end(list_t **head, const char *str)
 		{
 			q = q->next;
 		}
-		q->next = new;
+		q->next = end;
 	}
-	return (new);
+	return (end);
 }

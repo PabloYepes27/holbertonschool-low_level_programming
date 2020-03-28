@@ -8,7 +8,7 @@
 
 size_t print_listint_safe(const listint_t *head)
 {
-	int len = 0;
+	size_t len = 0;
 
 	if (head == NULL)
 		return (0);
