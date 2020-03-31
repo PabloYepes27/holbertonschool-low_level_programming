@@ -41,5 +41,5 @@ Tip: always prefer using symbolic constants (POSIX) vs numbers when it makes sen
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Juan Pablo Yepes [git] (https://github.com/PabloYepes27).
+Juan Pablo Yepes [git](https://github.com/PabloYepes27).
 
