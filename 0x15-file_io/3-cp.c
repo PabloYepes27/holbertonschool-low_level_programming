@@ -1,4 +1,3 @@
-/*#include "holberton.h"*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -77,7 +76,7 @@ int copy_file(const char *filename, char *text_content)
 {
 	int fd, wr, cl;
 
-	fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0664);
+	fd = open(filename, O_CREAT | O_TRUNC | O_WRONLY, 0664);
 	if (fd == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename);
