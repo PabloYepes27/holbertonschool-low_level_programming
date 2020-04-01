@@ -25,7 +25,7 @@ int main(int ac, char **av)
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-	file_from = read_file(av[1], 1024);
+	*file_from = read_file(av[1], 1024);
 	copy_file(av[2], file_from);
 	return (0);
 }
@@ -39,30 +39,27 @@ int main(int ac, char **av)
 
 char *read_file(const char *filename, int count)
 {
-	char *l;
-	int fd;
-	ssize_t rd;
+	char l[count];
+	int fd, rd, cl;
 
-	if (filename == NULL)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename);
-		exit(98);
-	}
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename);
 		exit(98);
 	}
-	l = malloc(sizeof(char) * count);
-	if (l == NULL)
-		return (0);
 	rd = read(fd, l, count);
 	if (rd == -1)
-		return (0);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename);
+		exit(98);
 	close(fd);
+	if (cl == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %i\n", fd);
+		exit(100);
+	}
 	l[rd] = '\0';
-	return (l);
+	return (*l);
 }
 
 /**
