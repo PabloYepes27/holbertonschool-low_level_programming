@@ -13,16 +13,18 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	dlistint_t *new, *tmp = *h;
 
 	new = malloc(sizeof(dlistint_t)); /* allocate new node */
-		if (tmp == NULL)
-			return (NULL);
+	if (tmp == NULL)
+		return (NULL);
 	new->n = n; /* put in the data */
-	for (i = 0; i < idx - 1; i++) /* stay one position behind the index*/
+	for (i = 0; h; i++) /* stay one position behind the index*/
 	{
 		if (tmp == NULL)
 		{
 			free(new);
 			return (NULL);
 		}
+		if (i == idx)
+			break;
 		tmp = tmp->next;
 	}
 	new->next = tmp->next;
