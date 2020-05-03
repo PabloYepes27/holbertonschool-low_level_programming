@@ -9,38 +9,44 @@
  */
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
-	unsigned int i, flag = 0;
+	unsigned int i;
 	dlistint_t *new, *tmp = *h;
 
-	if (h == NULL)
+	if (idx > dlistint_len(*h) || (h == NULL && idx != 0))
 		return (NULL);
 	new = malloc(sizeof(dlistint_t)); /* allocate new node */
 	if (new == NULL)
 		return (NULL);
 	new->n = n; /* put in the data */
 	if (idx == 0)
+		return (add_dnodeint(h, n));
+	else if (idx == dlistint_len(*h))
 	{
-		new->prev = NULL;
-		new->next = *h;
-		new->next->prev = new;
-		*h = new;
-		return (new);
+		return (add_dnodeint_end(h, n));
 	}
-	for (i = 0; h; i++) /* stay one position behind the index*/
+	else
 	{
-		if (i == idx)
-		{
-			flag++;
-			tmp = tmp->prev;
-			break;
-		}
-		tmp = tmp->next;
+		for (i = 0; i < idx - 1; i++)
+			tmp = tmp->next;
 	}
-	if (flag == 0)
-		return (NULL);
 	new->next = tmp->next;
 	tmp->next->prev = new;
 	tmp->next = new;
 	new->prev = tmp;
 	return (new);
 }
+
+/**
+ * dlistint_len - function that returns the number of elements in a DLL
+ * @h: Head node
+ * Return: the number of nodes
+ */
+size_t dlistint_len(const dlistint_t *h)
+{
+	size_t i;
+
+	for (i = 0; h != NULL; i++)
+		h = h->next;
+	return (i);
+}
+
