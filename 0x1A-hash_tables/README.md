@@ -11,6 +11,7 @@ Read or watch:
 * [Resolución Colisiones Hash](https://www.youtube.com/watch?v=eCFudDmyig0)
 * [Tablas Hash](https://www.youtube.com/watch?v=oWd0gpxQDQ4)
 * [Funciones Hash](https://www.youtube.com/watch?v=aAQerfASM7U)
+* [What is a hash table and how do you make it in C?](https://stackoverflow.com/questions/31930046/what-is-a-hash-table-and-how-do-you-make-it-in-c)
 ---
 ## Learning Objectives:bulb:
 What you should learn from this project:
