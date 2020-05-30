@@ -13,7 +13,7 @@ shash_table_t *shash_table_create(unsigned long int size)
 	{
 		return (NULL);
 	}
-	new_hash = malloc(sizeof(shash_table_t));
+	new_hash = calloc(1, sizeof(shash_table_t));
 	if (!new_hash)
 	{
 		return (NULL);
@@ -40,7 +40,8 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	unsigned long int index;
 	shash_node_t *ptr, *new_node;
 
-	if (ht == NULL || key == NULL || value == NULL)
+	if (ht == NULL || key == NULL || value == NULL ||
+	 (strcmp(key, "")) == 0)
 		return (0);
 	index = key_index((const unsigned char *)key, ht->size);
 	ptr = ht->array[index];
@@ -57,7 +58,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		}
 		ptr = ptr->next;
 	}
-	new_node = malloc(sizeof(shash_node_t));
+	new_node = calloc(1, sizeof(shash_node_t));
 	if (new_node == NULL)
 		return (0);
 	new_node->key = strdup(key);
@@ -75,7 +76,53 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	}
 	new_node->next = ht->array[index];
 	ht->array[index] = new_node;
-	return (1);
+	return (sdbl_list(ht, new_node));
+}
+
+
+/**
+ * sdbl_list - connect lists via double linked list.
+ * @ht:  is the hash table you want to look into
+ * @new_node: new node
+ * Return:  the value associated with the element, or NULL if key
+ *  couldn’t be found
+ */
+int sdbl_list(shash_table_t *ht, shash_node_t *new_node)
+{
+	shash_node_t *ptr = NULL;
+
+	if (ht->shead == NULL)
+	{
+		ht->shead = new_node;
+		ht->stail = new_node;
+		return (1);
+	}
+	else
+	{
+		ptr = ht->shead;
+		if (strcmp(new_node->key, ptr->key) < 0)
+		{
+			new_node->snext = ptr;
+			new_node->sprev = NULL;
+			ptr->sprev = new_node;
+			ht->shead = new_node;
+			return (1);
+		}
+		while (ptr->snext && strcmp(new_node->key, ptr->key) > 0)
+			ptr = ptr->snext;
+		if (ptr->snext == NULL && (strcmp(new_node->key, ptr->key) > 0))
+		{
+			new_node->sprev = ptr;
+			ptr->snext = new_node;
+			ht->stail = new_node;
+			return (1);
+		}
+		new_node->snext = ptr;
+		ptr->sprev->snext = new_node;
+		new_node->sprev = ptr->sprev;
+		ptr->sprev = new_node;
+		return (1);
+	}
 }
 
 /**
@@ -90,7 +137,7 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 	int index;
 	shash_node_t *ptr;
 
-	if (ht == NULL || key == NULL)
+	if (ht == NULL || key == NULL || (strcmp(key, "")) == 0)
 		return (NULL);
 	index = key_index((const unsigned char *)key, ht->size);
 	ptr = ht->array[index];
@@ -111,23 +158,48 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
  */
 void shash_table_print(const shash_table_t *ht)
 {
-	unsigned int i, size, count = 0;
+	unsigned int count = 0;
+	shash_node_t *ptr = NULL;
 
 	if (ht != NULL)
 	{
-		size = ht->size;
+		ptr = ht->shead;
 		printf("{");
-		for (i = 0; i < size; i++)
+		while (ptr)
 		{
-			while (ht->array[i] != NULL)
-			{
-				if (count > 0)
-					printf(", ");
-				printf("'%s': '%s'", ht->array[i]->key, ht->array[i]->value);
-				count++;
-				ht->array[i] = ht->array[i]->next;
+			if (count > 0)
+				printf(", ");
+			printf("'%s': '%s'", ptr->key, ptr->value);
+			count++;
+			ptr = ptr->snext;
 
-			}
+		}
+		printf("}\n");
+	}
+}
+
+/**
+ * shash_table_print_rev - Write a function that reverse a hash table.
+ * @ht: hash table
+ * Return: void
+ */
+void shash_table_print_rev(const shash_table_t *ht)
+{
+	unsigned int count = 0;
+	shash_node_t *ptr = NULL;
+
+	if (ht != NULL)
+	{
+		ptr = ht->stail;
+		printf("{");
+		while (ptr)
+		{
+			if (count > 0)
+				printf(", ");
+			printf("'%s': '%s'", ptr->key, ptr->value);
+			count++;
+			ptr = ptr->sprev;
+
 		}
 		printf("}\n");
 	}
@@ -176,33 +248,4 @@ void shash_table_delete(shash_table_t *ht)
 	}
 	free(ht->array);
 	free(ht);
-}
-
-/**
- * shash_table_print_rev - Write a function that deletes a hash table.
- * @ht: hash table
- * Return: void
- */
-void shash_table_print_rev(const shash_table_t *ht)
-{
-	unsigned int i, size, count = 0;
-
-	if (ht != NULL)
-	{
-		size = ht->size;
-		printf("{");
-		for (i = 0; i < size; i++)
-		{
-			while (ht->array[i] != NULL)
-			{
-				if (count > 0)
-					printf(", ");
-				printf("'%s': '%s'", ht->array[i]->key, ht->array[i]->value);
-				count++;
-				ht->array[i] = ht->array[i]->next;
-
-			}
-		}
-		printf("}\n");
-	}
 }
