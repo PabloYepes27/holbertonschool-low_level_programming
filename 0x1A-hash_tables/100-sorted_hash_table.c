@@ -109,7 +109,7 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
  * @ht: hash table
  * Return: void
  */
-void shash_table_print(const shash_table_t *ht);
+void shash_table_print(const shash_table_t *ht)
 {
 	unsigned int i, size, count = 0;
 
@@ -162,7 +162,7 @@ void free_list(shash_node_t *head)
  * @ht: hash table
  * Return: void
  */
-void shash_table_delete(shash_table_t *ht);
+void shash_table_delete(shash_table_t *ht)
 {
 	unsigned int i, size;
 
@@ -176,4 +176,33 @@ void shash_table_delete(shash_table_t *ht);
 	}
 	free(ht->array);
 	free(ht);
+}
+
+/**
+ * shash_table_print_rev - Write a function that deletes a hash table.
+ * @ht: hash table
+ * Return: void
+ */
+void shash_table_print_rev(const shash_table_t *ht)
+{
+	unsigned int i, size, count = 0;
+
+	if (ht != NULL)
+	{
+		size = ht->size;
+		printf("{");
+		for (i = 0; i < size; i++)
+		{
+			while (ht->array[i] != NULL)
+			{
+				if (count > 0)
+					printf(", ");
+				printf("'%s': '%s'", ht->array[i]->key, ht->array[i]->value);
+				count++;
+				ht->array[i] = ht->array[i]->next;
+
+			}
+		}
+		printf("}\n");
+	}
 }
