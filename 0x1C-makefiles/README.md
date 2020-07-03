@@ -89,6 +89,10 @@ valgrind --leak-check=full --show-leak-kinds=all ./holberton
 
 ## Built with:hammer:
 
+- C
+- GCC
+- python
+- valgrind
 
 ---
 
