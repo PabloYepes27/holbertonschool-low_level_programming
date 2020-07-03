@@ -1,6 +1,5 @@
 CC = gcc
 SRC = main.c holberton.c
-CFLAGS = -c
 OBJ = main.o holberton.o
 NAME = holberton
 
