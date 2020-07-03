@@ -1,6 +1,6 @@
 # 0x1C. C - Makefiles
 
-<gif  width="521"  alt="image"  src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-low_level_programming/273/giphy-2.gif">
+<img  width="521"  alt="image"  src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-low_level_programming/273/giphy-2.gif">
 
 ## Contents:open_file_folder:
 
