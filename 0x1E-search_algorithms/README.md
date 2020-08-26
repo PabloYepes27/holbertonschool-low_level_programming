@@ -112,7 +112,10 @@ https://github.com/PabloYepes27/holbertonschool-lower_level_programming.git
  
 Read or watch:
 * [Search algorithm](https://en.wikipedia.org/wiki/Search_algorithm)
-* [Space complexity (1)](https://www.geeksforgeeks.org/g-fact-86/)
+* [Space complexity](https://www.geeksforgeeks.org/g-fact-86/)
+* [Space Complexity of Algorithms with Examples ](https://www.faceprep.in/data-structures/space-complexity/#:~:text=Space%20complexity%20is%20the%20total,used%20in%20an%20algorithm%2Fprogram.)
+* [Introduction to Big O Notation and Time Complexity](https://www.youtube.com/watch?v=D6xkbGLQesk)
+* [Time & Space Complexity For Algorithms](https://www.youtube.com/watch?v=waPQP2TDOGE)
 
  
 ---
