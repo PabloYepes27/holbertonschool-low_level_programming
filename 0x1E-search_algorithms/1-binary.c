@@ -48,7 +48,7 @@ void print_array(int *array, int left, int right)
 {
 	int i = left;
 
-	printf("searching in array: ");
+	printf("Searching in array: ");
 	for (; i < right; i++)
 		printf("%d, ", array[i]);
 	printf("%d\n", array[i]);
