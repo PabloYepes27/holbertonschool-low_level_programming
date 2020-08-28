@@ -29,6 +29,8 @@ int binary_search_rec(int *array, int left, int right, int value)
 	int mid = left + (right - left) / 2;
 
 	print_array(array, left, right);
+	if (array[0] == value)
+		return (0);
 	if (array[mid] == value)
 	{
 		if (array[mid - 1] == value)
