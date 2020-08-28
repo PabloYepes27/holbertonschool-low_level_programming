@@ -21,11 +21,12 @@ int exponential_search(int *array, size_t size, int value)
 	while (i < size && array[i] <= value)
 	{
 		printf("Value checked array[%ld] = [%d]\n", i, array[i]);
-		i = i * 2;
+		if (array[i] <= value)
+			i = i * 2;
 	}
 	printf("Value found between indexes [%ld] and [%d]\n", i / 2,
 	 minimum(size - 1, i));
-	return (binary_search_rec(array, i / 2, minimum(size, i), value));
+	return (binary_search_rec(array, i / 2, minimum(size - 1, i), value));
 }
 
 /**
@@ -40,19 +41,11 @@ int binary_search_rec(int *array, int left, int right, int value)
 {
 	int mid = left + (right - left) / 2;
 
+	print_array(array, left, right);
 	if (array[mid] == value)
-	{
-		if (left != right)
-			print_array(array, left, right);
 		return (mid);
-	}
 	if (left >= right)
-	{
-		if (left != right)
-			print_array(array, left, right);
 		return (-1);
-	}
-	print_array(array, left - 1, right - 1);
 	if (array[mid] < value)
 		return (binary_search_rec(array, mid + 1, right, value));
 	return (binary_search_rec(array, left, mid - 1, value));
